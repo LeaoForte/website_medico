@@ -67,25 +67,27 @@
         .main-content h1 {
             margin-bottom: 20px;
         }
-        .quick-links {
-            margin-top: 20px;
+        .quick-links-box {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            width: 300px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
+            padding: 10px;
             border-radius: 10px;
-            width: 80%;
-            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        .quick-links h2 {
+        .quick-links-box h2 {
             margin-bottom: 10px;
             color: black;
         }
-        .quick-links a {
+        .quick-links-box a {
             display: block;
             margin: 5px 0;
             color: #333;
             text-decoration: none;
         }
-        .quick-links a:hover {
+        .quick-links-box a:hover {
             text-decoration: underline;
         }
         .back-button {
@@ -309,7 +311,7 @@
     </div>
     <div class="main-content">
         <h1>Índice de Problemas Médicos</h1>
-        <div class="quick-links">
+        <div class="quick-links-box">
             <h2>Links Rápidos</h2>
             <a href="calculadora_clinica.html">Calculadora Clínica</a>
             <a href="valores_laboratoriais.html">Valores Laboratoriais Normais</a>
@@ -319,4 +321,15 @@
         <a href="index.html" class="back-button">Voltar à Escolha de Profissão</a>
     </div>
 </body>
+<script>
+    function mostrarInformacao(categoria) {
+    // Esconde todas as categorias
+    const infos = document.querySelectorAll('.info');
+    infos.forEach(info => info.style.display = 'none');
+
+    // Mostra a categoria selecionada
+    const categoriaSelecionada = document.getElementById(categoria);
+    categoriaSelecionada.style.display = 'block';
+}
+</script>
 </html>
