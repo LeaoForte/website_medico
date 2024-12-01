@@ -14,19 +14,27 @@
             background-repeat: no-repeat;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             color: white;
+            display: flex;
+            flex-direction: row;
         }
         .container {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 80%;
-            max-width: 600px;
+            width: 70%;
+            margin: 20px;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        .sidebar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 25%;
+            margin: 20px;
+            text-align: left;
         }
         h1 {
             margin-bottom: 20px;
@@ -66,6 +74,16 @@
         .dropdown-content a:hover {
             text-decoration: underline;
         }
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #00BFFF;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
     </style>
     <script>
         function toggleDropdown(id) {
@@ -79,39 +97,69 @@
     </script>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Links Rápidos</h2>
+        <a href="calculadora_clinica.html">Calculadora Clínica</a>
+        <a href="valores_laboratoriais.html">Valores Laboratoriais Normais</a>
+        <a href="outros_recursos.html">Outros Recursos</a>
+        <a href="videos_procedimentos.html">Vídeos de Procedimentos e Exames</a>
+    </div>
+
     <div class="container">
         <h1>Índice de Problemas Médicos</h1>
         <p>Clique em uma categoria para expandir e selecionar um problema:</p>
-        
+
         <div class="dropdown">
-            <button onclick="toggleDropdown('cardiologia')">Cardiologia</button>
-            <div id="cardiologia" class="dropdown-content">
+            <button onclick="toggleDropdown('dermatologicos')">Distúrbios Dermatológicos</button>
+            <div id="dermatologicos" class="dropdown-content">
+                <a href="acne.html">Acne</a>
+                <a href="eczema.html">Eczema</a>
+                <a href="psoriase.html">Psoríase</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button onclick="toggleDropdown('otorrino')">Distúrbios do Ouvido, Nariz e Garganta</button>
+            <div id="otorrino" class="dropdown-content">
+                <a href="sinusite.html">Sinusite</a>
+                <a href="otite.html">Otite</a>
+                <a href="amigdalite.html">Amigdalite</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button onclick="toggleDropdown('cardiovasculares')">Doenças Cardiovasculares</button>
+            <div id="cardiovasculares" class="dropdown-content">
                 <a href="ataque_cardiaco.html">Ataque Cardíaco</a>
                 <a href="arritmia.html">Arritmia</a>
+                <a href="hipertensao.html">Hipertensão</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button onclick="toggleDropdown('neurologia')">Neurologia</button>
-            <div id="neurologia" class="dropdown-content">
+            <button onclick="toggleDropdown('neurologicos')">Distúrbios Neurológicos</button>
+            <div id="neurologicos" class="dropdown-content">
                 <a href="avc.html">Acidente Vascular Cerebral (AVC)</a>
-                <a href="convulsao.html">Convulsão</a>
+                <a href="epilepsia.html">Epilepsia</a>
+                <a href="enxaqueca.html">Enxaqueca</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button onclick="toggleDropdown('traumatologia')">Traumatologia</button>
-            <div id="traumatologia" class="dropdown-content">
-                <a href="fraturas.html">Fraturas</a>
-                <a href="luxacoes.html">Luxações</a>
+            <button onclick="toggleDropdown('pulmonares')">Distúrbios Pulmonares</button>
+            <div id="pulmonares" class="dropdown-content">
+                <a href="asma.html">Asma</a>
+                <a href="pneumonia.html">Pneumonia</a>
+                <a href="dpoc.html">DPOC</a>
             </div>
         </div>
 
         <div class="dropdown">
-            <button onclick="toggleDropdown('emergencias_gerais')">Emergências Gerais</button>
-            <div id="emergencias_gerais" class="dropdown-content">
-                <a href="hemorragias.html">Hemorragias</a>
-                <a href="queimaduras.html">Queimaduras</a>
+            <button onclick="toggleDropdown('gastrointestinais')">Distúrbios Gastrointestinais</button>
+            <div id="gastrointestinais" class="dropdown-content">
+                <a href="gastrite.html">Gastrite</a>
+                <a href="ulcera.html">Úlcera</a>
+                <a href="intestino_irritavel.html">Síndrome do Intestino Irritável</a>
             </div>
         </div>
     </div>
