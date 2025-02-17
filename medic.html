@@ -3,53 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistente de Roleplay Médico</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Intervenções Médicas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+        }
+        .sidebar li:hover {
+            background: #555;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background: #444;
+        }
+        .details {
+            display: none;
+            background: #555;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .details img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="welcome-screen">
-        <div class="overlay">
-            <h1>Bem-vindo ao Assistente de Roleplay Médico</h1>
-            <p>Escolhe a tua profissão para começar:</p>
-            <div class="button-group">
-                <button class="btn medico" onclick="startDashboard('Médico')">Médico</button>
-                <button class="btn paramedico" onclick="startDashboard('Paramédico')">Paramédico</button>
-                <button class="btn bombeiro" onclick="startDashboard('Bombeiro')">Bombeiro</button>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Intervenções</h2>
+            <ul>
+                <li onclick="showDetails('vascular')">Vascular Access 22G</li>
+                <li onclick="showDetails('morphine')">Morphine</li>
+                <li onclick="showDetails('ketamine')">Ketamine</li>
+                <li onclick="showDetails('oxygen')">Oxygen Mask</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="vascular" class="details">
+                <h2>Vascular Access 22G</h2>
+                <img src="vascular_access.jpg" alt="Vascular Access 22G">
+                <p>A agulha IV pode ser usada para obter acesso vascular, necessário para administrar medicamentos como morfina, cetamina ou solução salina diretamente na corrente sanguínea do paciente.</p>
+                <h3>Impede as seguintes ações:</h3>
+                <ul>
+                    <li>Penso</li>
+                    <li>Penso para queimaduras</li>
+                    <li>Manguito de pressão arterial</li>
+                    <li>Outro acesso vascular</li>
+                </ul>
+            </div>
+            <div id="morphine" class="details">
+                <h2>Morphine</h2>
+                <p>Usado para o alívio da dor severa, administrado por via intravenosa.</p>
+            </div>
+            <div id="ketamine" class="details">
+                <h2>Ketamine</h2>
+                <p>Usado para sedação e analgesia, frequentemente em emergências médicas.</p>
+            </div>
+            <div id="oxygen" class="details">
+                <h2>Oxygen Mask</h2>
+                <p>Fornece oxigênio suplementar para pacientes com dificuldades respiratórias.</p>
             </div>
         </div>
     </div>
-    
-    <div class="container hidden" id="dashboard">
-        <aside class="sidebar">
-            <h2>Select</h2>
-            <ul>
-                <li><button onclick="selectItem('Ketamine')">Ketamine</button></li>
-                <li><button onclick="selectItem('Lorazepam')">Lorazepam</button></li>
-                <li><button onclick="selectItem('Morphine')">Morphine</button></li>
-                <li><button onclick="selectItem('Naloxon')">Naloxon</button></li>
-                <li><button onclick="selectItem('Neck Brace')">Neck Brace</button></li>
-                <li><button onclick="selectItem('Vascular Access')">Vascular Access</button></li>
-            </ul>
-        </aside>
-        <main>
-            <nav class="topbar">
-                <button onclick="selectCategory('General')">General</button>
-                <button onclick="selectCategory('Conditions')">Conditions</button>
-                <button onclick="selectCategory('Interventions')">Interventions</button>
-                <button onclick="selectCategory('Vitals')">Vitals</button>
-                <button onclick="selectCategory('Evidence')">Evidence</button>
-            </nav>
-            <section class="content">
-                <h3 id="item-title">Vascular Access</h3>
-                <p id="item-description">Displaying information about Vascular Access.</p>
-            </section>
-        </main>
-    </div>
-    
+
     <script>
-        function startDashboard(role) {
-            document.querySelector(".welcome-screen").style.display = "none";
-            document.getElementById("dashboard").classList.remove("hidden");
+        function showDetails(id) {
+            document.querySelectorAll('.details').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
         }
     </script>
 </body>
