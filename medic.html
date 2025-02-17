@@ -7,23 +7,40 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
             background-color: #222;
             color: white;
+            margin: 0;
+        }
+        .header {
+            display: flex;
+            background: #444;
+            padding: 10px;
+            justify-content: space-around;
+        }
+        .header button {
+            background: #666;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .header button:hover, .header button.active {
+            background: #FFA500;
         }
         .container {
             display: flex;
-            width: 100%;
+            height: calc(100vh - 50px);
         }
         .sidebar {
             width: 250px;
             background: #333;
             padding: 10px;
             overflow-y: auto;
+            display: none;
         }
-        .sidebar h2 {
-            text-align: center;
+        .sidebar.active {
+            display: block;
         }
         .sidebar ul {
             list-style: none;
@@ -33,70 +50,127 @@
             padding: 10px;
             cursor: pointer;
             border-bottom: 1px solid #444;
+            transition: background 0.3s;
         }
-        .sidebar li:hover {
-            background: #555;
+        .sidebar li:hover, .sidebar li.active {
+            background: #FFA500;
         }
         .content {
             flex-grow: 1;
             padding: 20px;
-            background: #444;
+            background: #555;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .details {
             display: none;
-            background: #555;
+            background: #666;
             padding: 20px;
             border-radius: 5px;
+            max-width: 500px;
+            text-align: center;
+            transition: opacity 0.3s;
         }
         .details img {
             width: 100%;
             border-radius: 5px;
         }
+        .details.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <button class="tab active" onclick="changeTab('interventions', this)">Intervenções</button>
+        <button class="tab" onclick="changeTab('conditions', this)">Condições</button>
+        <button class="tab" onclick="changeTab('vitals', this)">Sinais Vitais</button>
+        <button class="tab" onclick="changeTab('evidence', this)">Evidências</button>
+    </div>
     <div class="container">
-        <div class="sidebar">
-            <h2>Intervenções</h2>
+        <div id="interventions-sidebar" class="sidebar active">
             <ul>
-                <li onclick="showDetails('vascular')">Vascular Access 22G</li>
-                <li onclick="showDetails('morphine')">Morphine</li>
-                <li onclick="showDetails('ketamine')">Ketamine</li>
-                <li onclick="showDetails('oxygen')">Oxygen Mask</li>
+                <li onclick="showDetails('vascular', this)">Acesso Vascular 22G</li>
+                <li onclick="showDetails('morphine', this)">Morfina</li>
+                <li onclick="showDetails('ketamine', this)">Cetamina</li>
+                <li onclick="showDetails('oxygen', this)">Máscara de Oxigênio</li>
             </ul>
         </div>
-        <div class="content">
-            <div id="vascular" class="details">
-                <h2>Vascular Access 22G</h2>
-                <img src="vascular_access.jpg" alt="Vascular Access 22G">
-                <p>A agulha IV pode ser usada para obter acesso vascular, necessário para administrar medicamentos como morfina, cetamina ou solução salina diretamente na corrente sanguínea do paciente.</p>
-                <h3>Impede as seguintes ações:</h3>
-                <ul>
-                    <li>Penso</li>
-                    <li>Penso para queimaduras</li>
-                    <li>Manguito de pressão arterial</li>
-                    <li>Outro acesso vascular</li>
-                </ul>
+        <div id="conditions-sidebar" class="sidebar">
+            <ul>
+                <li onclick="showDetails('hypertension', this)">Hipertensão</li>
+                <li onclick="showDetails('diabetes', this)">Diabetes</li>
+                <li onclick="showDetails('cardiac', this)">Parada Cardíaca</li>
+            </ul>
+        </div>
+        <div id="vitals-sidebar" class="sidebar">
+            <ul>
+                <li onclick="showDetails('heart', this)">Frequência Cardíaca</li>
+                <li onclick="showDetails('blood', this)">Pressão Arterial</li>
+                <li onclick="showDetails('oxygen_sat', this)">Saturação de Oxigênio</li>
+            </ul>
+        </div>
+        <div id="evidence-sidebar" class="sidebar">
+            <ul>
+                <li onclick="showDetails('xray', this)">Raio-X</li>
+                <li onclick="showDetails('blood_test', this)">Exame de Sangue</li>
+                <li onclick="showDetails('ct_scan', this)">Tomografia Computadorizada</li>
+            </ul>
+        </div>
+        <div class="content" id="content-area">
+            <div id="vascular" class="details active">
+                <h2>Acesso Vascular 22G</h2>
+                <p>Dispositivo utilizado para administração intravenosa de fluidos e medicamentos em emergências.</p>
             </div>
             <div id="morphine" class="details">
-                <h2>Morphine</h2>
-                <p>Usado para o alívio da dor severa, administrado por via intravenosa.</p>
+                <h2>Morfina</h2>
+                <p>Analgésico opioide potente utilizado para alívio da dor intensa.</p>
             </div>
             <div id="ketamine" class="details">
-                <h2>Ketamine</h2>
-                <p>Usado para sedação e analgesia, frequentemente em emergências médicas.</p>
+                <h2>Cetamina</h2>
+                <p>Anestésico de ação rápida utilizado para sedação em emergências.</p>
             </div>
             <div id="oxygen" class="details">
-                <h2>Oxygen Mask</h2>
-                <p>Fornece oxigênio suplementar para pacientes com dificuldades respiratórias.</p>
+                <h2>Máscara de Oxigênio</h2>
+                <p>Dispositivo que fornece oxigênio suplementar a pacientes com dificuldades respiratórias.</p>
+            </div>
+            <div id="hypertension" class="details">
+                <h2>Hipertensão</h2>
+                <p>Pressão arterial elevada que pode causar danos ao coração e vasos sanguíneos.</p>
+            </div>
+            <div id="diabetes" class="details">
+                <h2>Diabetes</h2>
+                <p>Doença metabólica caracterizada por níveis elevados de açúcar no sangue.</p>
+            </div>
+            <div id="cardiac" class="details">
+                <h2>Parada Cardíaca</h2>
+                <p>Interrupção súbita da função cardíaca, necessitando reanimação imediata.</p>
             </div>
         </div>
     </div>
-
     <script>
-        function showDetails(id) {
-            document.querySelectorAll('.details').forEach(el => el.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+        function showDetails(id, element) {
+            document.querySelectorAll('.details').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            document.querySelectorAll('.sidebar li').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function changeTab(tab, element) {
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            document.querySelectorAll('.sidebar').forEach(el => el.classList.remove('active'));
+            document.getElementById(tab + '-sidebar').classList.add('active');
+            
+            let firstItem = document.getElementById(tab + '-sidebar').querySelector("li");
+            if (firstItem) {
+                firstItem.click();
+            }
         }
     </script>
 </body>
