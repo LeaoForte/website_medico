@@ -1,335 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Médico</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-            background-image: url('https://via.placeholder.com/1920x1080'); /* Substitua pelo link da sua imagem */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: white;
-        }
-        .sidebar {
-            width: 25%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-            overflow-y: auto;
-        }
-        .sidebar h2 {
-            margin-bottom: 15px;
-        }
-        .sidebar .category {
-            margin-bottom: 10px;
-        }
-        .sidebar .category button {
-            width: 100%;
-            background-color: #00BFFF;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .sidebar .category button:hover {
-            background-color: #008CBA;
-        }
-        .sidebar .dropdown-content {
-            display: none;
-            padding-left: 10px;
-        }
-        .sidebar .dropdown-content a {
-            display: block;
-            color: #00BFFF;
-            text-decoration: none;
-            margin: 5px 0;
-        }
-        .sidebar .dropdown-content a:hover {
-            text-decoration: underline;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .main-content h1 {
-            margin-bottom: 20px;
-        }
-        .quick-links-box {
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            width: 300px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-        .quick-links-box h2 {
-            margin-bottom: 10px;
-            color: black;
-        }
-        .quick-links-box a {
-            display: block;
-            margin: 5px 0;
-            color: #333;
-            text-decoration: none;
-        }
-        .quick-links-box a:hover {
-            text-decoration: underline;
-        }
-        .back-button {
-             position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #E55347;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: #2cf1f1;
-        }
-    </style>
-    <script>
-        function toggleDropdown(id) {
-            const content = document.getElementById(id);
-            content.style.display = content.style.display === "block" ? "none" : "block";
-        }
-    </script>
+    <title>Assistente de Roleplay Médico</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Categorias</h2>
-        <div class="category">
-            <button onclick="toggleDropdown('dermatologicos')">Distúrbios Dermatológicos</button>
-            <div id="dermatologicos" class="dropdown-content">
-                <a href="acne.html">Acne</a>
-                <a href="eczema.html">Eczema</a>
-                <a href="psoriase.html">Psoríase</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('otorrino')">Distúrbios do Ouvido, Nariz e Garganta</button>
-            <div id="otorrino" class="dropdown-content">
-                <a href="sinusite.html">Sinusite</a>
-                <a href="otite.html">Otite</a>
-                <a href="amigdalite.html">Amigdalite</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('musculoesqueletico')">Distúrbios dos Tecidos Conjuntivo e Musculoesquelético</button>
-            <div id="musculoesqueletico" class="dropdown-content">
-                <a href="artrite.html">Artrite</a>
-                <a href="osteoporose.html">Osteoporose</a>
-                <a href="tendinite.html">Tendinite</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('endocrino')">Distúrbios Endócrinos e Metabólicos</button>
-            <div id="endocrino" class="dropdown-content">
-                <a href="diabetes.html">Diabetes</a>
-                <a href="hipotireoidismo.html">Hipotireoidismo</a>
-                <a href="obesidade.html">Obesidade</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('gastrointestinais')">Distúrbios Gastrointestinais</button>
-            <div id="gastrointestinais" class="dropdown-content">
-                <a href="gastrite.html">Gastrite</a>
-                <a href="ulcera.html">Úlcera</a>
-                <a href="intestino_irritavel.html">Síndrome do Intestino Irritável</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('geniturinarios')">Distúrbios Geniturinários</button>
-            <div id="geniturinarios" class="dropdown-content">
-                <a href="infecao_urinaria.html">Infecção Urinária</a>
-                <a href="cistite.html">Cistite</a>
-                <a href="pedra_rim.html">Pedra no Rim</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('hepaticos')">Distúrbios Hepáticos e Biliares</button>
-            <div id="hepaticos" class="dropdown-content">
-                <a href="hepatite.html">Hepatite</a>
-                <a href="cirrose.html">Cirrose</a>
-                <a href="colecistite.html">Colecistite</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('neurologicos')">Distúrbios Neurológicos</button>
-            <div id="neurologicos" class="dropdown-content">
-                <a href="avc.html">Acidente Vascular Cerebral (AVC)</a>
-                <a href="epilepsia.html">Epilepsia</a>
-                <a href="enxaqueca.html">Enxaqueca</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('nutricionais')">Distúrbios Nutricionais</button>
-            <div id="nutricionais" class="dropdown-content">
-                <a href="anemia.html">Anemia</a>
-                <a href="bulimia.html">Bulimia</a>
-                <a href="desnutricao.html">Desnutrição</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('odontologicos')">Distúrbios Odontológicos</button>
-            <div id="odontologicos" class="dropdown-content">
-                <a href="cárie.html">Cárie</a>
-                <a href="gengivite.html">Gengivite</a>
-                <a href="periodontite.html">Periodontite</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('oftalmologicos')">Distúrbios Oftalmológicos</button>
-            <div id="oftalmologicos" class="dropdown-content">
-                <a href="miopia.html">Miopia</a>
-                <a href="astigmatismo.html">Astigmatismo</a>
-                <a href="glaucoma.html">Glaucoma</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('pulmonares')">Distúrbios Pulmonares</button>
-            <div id="pulmonares" class="dropdown-content">
-                <a href="asma.html">Asma</a>
-                <a href="pneumonia.html">Pneumonia</a>
-                <a href="dpo.html">DPOC</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('cardiovasculares')">Doenças Cardiovasculares</button>
-            <div id="cardiovasculares" class="dropdown-content">
-                <a href="infarto.html">Infarto</a>
-                <a href="hipertensao.html">Hipertensão</a>
-                <a href="arritmia.html">Arritmias</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('infecciosas')">Doenças Infecciosas</button>
-            <div id="infecciosas" class="dropdown-content">
-                <a href="gripe.html">Gripe</a>
-                <a href="covid.html">COVID-19</a>
-                <a href="tuberculose.html">Tuberculose</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('farmacologia')">Farmacologia Clínica</button>
-            <div id="farmacologia" class="dropdown-content">
-                <a href="analgesicos.html">Analgésicos</a>
-                <a href="antibioticos.html">Antibióticos</a>
-                <a href="antiinflamatorios.html">Anti-inflamatórios</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('geriatria')">Geriatria</button>
-            <div id="geriatria" class="dropdown-content">
-                <a href="demencia.html">Demência</a>
-                <a href="osteoporose.html">Osteoporose</a>
-                <a href="fraqueza.html">Fraqueza</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('ginecologia')">Ginecologia e Obstetrícia</button>
-            <div id="ginecologia" class="dropdown-content">
-                <a href="gravidez.html">Gravidez</a>
-                <a href="cancer_ovario.html">Câncer de Ovário</a>
-                <a href="endometriose.html">Endometriose</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('hematologia')">Hematologia e Oncologia</button>
-            <div id="hematologia" class="dropdown-content">
-                <a href="leucemia.html">Leucemia</a>
-                <a href="linfoma.html">Linfoma</a>
-                <a href="anemia_falciforme.html">Anemia Falciforme</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('imunologia')">Imunologia; Distúrbios Alérgicos</button>
-            <div id="imunologia" class="dropdown-content">
-                <a href="alergias.html">Alergias</a>
-                <a href="imunodeficiencia.html">Imunodeficiência</a>
-                <a href="autoimune.html">Doenças Autoimunes</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('lesoes')">Lesões; Intoxicação</button>
-            <div id="lesoes" class="dropdown-content">
-                <a href="trauma.html">Trauma</a>
-                <a href="queimadura.html">Queimaduras</a>
-                <a href="intoxicacao.html">Intoxicação</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('cuidados_criticos')">Medicina de Cuidados Críticos</button>
-            <div id="cuidados_criticos" class="dropdown-content">
-                <a href="sepse.html">Sepse</a>
-                <a href="insuficiencia_respiratoria.html">Insuficiência Respiratória</a>
-                <a href="choque.html">Choque</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('pediatria')">Pediatria</button>
-            <div id="pediatria" class="dropdown-content">
-                <a href="sarampo.html">Sarampo</a>
-                <a href="varicela.html">Varicela</a>
-                <a href="otite_pediatrica.html">Otite Pediátrica</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('psiquiatria')">Transtornos Psiquiátricos</button>
-            <div id="psiquiatria" class="dropdown-content">
-                <a href="depressao.html">Depressão</a>
-                <a href="ansiedade.html">Ansiedade</a>
-                <a href="psicoses.html">Psicoses</a>
-            </div>
-        </div>
-        <div class="category">
-            <button onclick="toggleDropdown('topicos_especiais')">Tópicos Especiais</button>
-            <div id="topicos_especiais" class="dropdown-content">
-                <a href="medicina_nuclear.html">Medicina Nuclear</a>
-                <a href="genetica.html">Genética Médica</a>
-                <a href="medicina_integrativa.html">Medicina Integrativa</a>
+    <div class="welcome-screen">
+        <div class="overlay">
+            <h1>Bem-vindo ao Assistente de Roleplay Médico</h1>
+            <p>Escolhe a tua profissão para começar:</p>
+            <div class="button-group">
+                <button class="btn medico" onclick="startDashboard('Médico')">Médico</button>
+                <button class="btn paramedico" onclick="startDashboard('Paramédico')">Paramédico</button>
+                <button class="btn bombeiro" onclick="startDashboard('Bombeiro')">Bombeiro</button>
             </div>
         </div>
     </div>
-    <div class="main-content">
-        <h1>Manual Médico</h1>
-        <div class="quick-links-box">
-            <h2>Links Rápidos</h2>
-            <a href="calculadora_clinica.html">Calculadora Clínica</a>
-            <a href="valores_laboratoriais.html">Valores Laboratoriais Normais</a>
-            <a href="outros_recursos.html">Outros Recursos</a>
-            <a href="videos_procedimentos.html">Vídeos de Procedimentos e Exames</a>
-        </div>
-        <a href="index.html" class="back-button">Voltar à Escolha de Profissão</a>
+    
+    <div class="container hidden" id="dashboard">
+        <aside class="sidebar">
+            <h2>Select</h2>
+            <ul>
+                <li><button onclick="selectItem('Ketamine')">Ketamine</button></li>
+                <li><button onclick="selectItem('Lorazepam')">Lorazepam</button></li>
+                <li><button onclick="selectItem('Morphine')">Morphine</button></li>
+                <li><button onclick="selectItem('Naloxon')">Naloxon</button></li>
+                <li><button onclick="selectItem('Neck Brace')">Neck Brace</button></li>
+                <li><button onclick="selectItem('Vascular Access')">Vascular Access</button></li>
+            </ul>
+        </aside>
+        <main>
+            <nav class="topbar">
+                <button onclick="selectCategory('General')">General</button>
+                <button onclick="selectCategory('Conditions')">Conditions</button>
+                <button onclick="selectCategory('Interventions')">Interventions</button>
+                <button onclick="selectCategory('Vitals')">Vitals</button>
+                <button onclick="selectCategory('Evidence')">Evidence</button>
+            </nav>
+            <section class="content">
+                <h3 id="item-title">Vascular Access</h3>
+                <p id="item-description">Displaying information about Vascular Access.</p>
+            </section>
+        </main>
     </div>
+    
+    <script>
+        function startDashboard(role) {
+            document.querySelector(".welcome-screen").style.display = "none";
+            document.getElementById("dashboard").classList.remove("hidden");
+        }
+    </script>
 </body>
-<script>
-    function mostrarInformacao(categoria) {
-    // Esconde todas as categorias
-    const infos = document.querySelectorAll('.info');
-    infos.forEach(info => info.style.display = 'none');
-
-    // Mostra a categoria selecionada
-    const categoriaSelecionada = document.getElementById(categoria);
-    categoriaSelecionada.style.display = 'block';
-}
-</script>
 </html>
