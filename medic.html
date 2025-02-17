@@ -71,7 +71,8 @@
             border-radius: 5px;
             max-width: 500px;
             text-align: center;
-            transition: opacity 0.3s;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
         .details img {
             width: 100%;
@@ -149,6 +150,18 @@
                 <h2>Parada Cardíaca</h2>
                 <p>Interrupção súbita da função cardíaca, necessitando reanimação imediata.</p>
             </div>
+            <div id="heart" class="details">
+                <h2>Frequência Cardíaca</h2>
+                <p>O número de batimentos cardíacos por minuto, essencial para avaliação da função cardíaca.</p>
+            </div>
+            <div id="blood" class="details">
+                <h2>Pressão Arterial</h2>
+                <p>A pressão exercida pelo sangue nas paredes das artérias, fundamental para a circulação sanguínea.</p>
+            </div>
+            <div id="oxygen_sat" class="details">
+                <h2>Saturação de Oxigênio</h2>
+                <p>A porcentagem de hemoglobina no sangue que está carregando oxigênio, crucial para a oxigenação dos tecidos.</p>
+            </div>
         </div>
     </div>
     <script>
@@ -166,7 +179,9 @@
             
             document.querySelectorAll('.sidebar').forEach(el => el.classList.remove('active'));
             document.getElementById(tab + '-sidebar').classList.add('active');
-            
+
+            document.querySelectorAll('.details').forEach(el => el.classList.remove('active'));
+
             let firstItem = document.getElementById(tab + '-sidebar').querySelector("li");
             if (firstItem) {
                 firstItem.click();
